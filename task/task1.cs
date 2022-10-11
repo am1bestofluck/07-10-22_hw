@@ -41,9 +41,13 @@ class Mirrored_string{
         }
         return output;
     }
-    bool math_solution(){
+    bool math_solution(int num_parsed){
         bool output=true;
         int _len =content.Length;
+        int num_m= Math.Abs(num_parsed);//...чем дальше в лес тем больше допущений.
+        int base=10;
+        while (num_m/
+
         //всё равно надо ходить по разрядам.
         //     position=abs(position)
         // shortcut=f"{incoming_data['num']}" if incoming_data["positive"] else f"-{incoming_data['num']}"
@@ -87,7 +91,7 @@ class Mirrored_string{
             Console.WriteLine("не число, зеркальность нельзя !посчитать");
         }
         else {
-            bool sol2= iteration_.math_solution();
+            bool sol2= iteration_.math_solution(num_parsed: decimal_solution.First().Value);
             if (sol2==true){
                 Console.WriteLine("Математическое решение: это паллиндром");
             }
