@@ -43,34 +43,51 @@ class Mirrored_string{
     }
     bool math_solution(int num_parsed){
         bool output=true;
-        int _len =content.Length;
-        int num_m= Math.Abs(num_parsed);//...чем дальше в лес тем больше допущений.
-        int base=10;
-        while (num_m/
+        int _len =1;
+        while (num_parsed%Math.Pow(10,_len)!=num_parsed)
+        {
+            _len++;
+        }
+        int index_top=0,index_bottom=_len-1,supval_t,supval_b,_pow_t,_pow_b,num_top=-1,num_bottom=-2;
+        _pow_t=_len;
+        _pow_b=_len;
+        supval_t=num_parsed;
+        supval_b=num_parsed;
+        while (index_top<index_bottom)
+        {
+            while (supval_t>Math.Pow(10,index_bottom))
+            {
+                supval_t=supval_t%(int)Math.Pow(10,_pow_t);
+                _pow_t--;
+                // Console.WriteLine(supval_t);
+            }
+            num_top=(int)(supval_t/Math.Pow(10,_pow_t));
+            while (supval_b>Math.Pow(10,index_top))
+            {
+                supval_b=supval_b%(int)Math.Pow(10,_pow_b);
+                _pow_b--;
+            }
+            num_bottom=(int)(supval_b/Math.Pow(10,_pow_t));
+            index_top++;
+            index_bottom--;
+        }
+        if (num_top!=num_bottom)
+        {
+            output=false;
+            return output;
+        }
 
-        //всё равно надо ходить по разрядам.
-        //     position=abs(position)
-        // shortcut=f"{incoming_data['num']}" if incoming_data["positive"] else f"-{incoming_data['num']}"
-        // shortcut_int=int(incoming_data['num'])
-        // if len(incoming_data["num"])<=position:
-        //     print(f"Число {shortcut} не содержит в себе {str(position+1)} знаков.")
-        //     return
-        // # cтрока
-        // _char=incoming_data['num'][position]#женюсь.
-        // # матчасть
-        // #как найти первый знак? нужно число поделить на нижний разряд
-        // sc_len=len(incoming_data['num'])
-        // max_pow=len(incoming_data['num'])-1
-        // match position:
-        //     case 0:
-        //         shortcut_int=shortcut_int//10**(max_pow)
-        //     case _:
-        //         stop_here=10**(sc_len-position)
-        //         while shortcut_int>stop_here:
-        //             shortcut_int=shortcut_int%10**max_pow
-        //             max_pow-=1
-        //             # print(shortcut_int)
-        //         shortcut_int=int(shortcut_int//(stop_here/10))
+        //...чем дальше в лес тем больше допущений.
+        // 987654->10*6-- max_n znakov
+        // n-1:
+        // int m=987654
+        // while (m>10**n-1) {m=m%10**max_n
+        // max_n=max_n-1}
+        // m=m/10**max_n
+        // повторяем это для индексов которые идут на встречу друг другу пока они не разминутся
+        // while (true){
+        //     System.Console.WriteLine();
+        // }
         return output;
     }
     public void main(){//string[] args не обязательно, это аргументы 
