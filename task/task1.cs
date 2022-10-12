@@ -1,13 +1,5 @@
 using static System.Console;
-string[] fast_test= {"aspera","Сорос","12321","456654","0123"};
-Mirrored_string.todo();
-foreach(string var in fast_test){
-    Mirrored_string run= new Mirrored_string(self:var);
-    run.main();
-}
 
-Mirrored_string abc= new Mirrored_string(self:"qweewq");
-abc.main();
 class Mirrored_string{
     public static void todo(){
         WriteLine("// Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.");
@@ -43,34 +35,33 @@ class Mirrored_string{
     }
     bool math_solution(int num_parsed){
         bool output=true;
-        int _len =content.Length;
+        // int _len =content.Length;
+        int _len=1;
+        while (num_parsed%(int)(Math.Pow(10,_len))!=num_parsed)
+        {
+            _len++;
+        }
         int num_m= Math.Abs(num_parsed);//...чем дальше в лес тем больше допущений.
-        int base=10;
-        while (num_m/
-
-        //всё равно надо ходить по разрядам.
-        //     position=abs(position)
-        // shortcut=f"{incoming_data['num']}" if incoming_data["positive"] else f"-{incoming_data['num']}"
-        // shortcut_int=int(incoming_data['num'])
-        // if len(incoming_data["num"])<=position:
-        //     print(f"Число {shortcut} не содержит в себе {str(position+1)} знаков.")
-        //     return
-        // # cтрока
-        // _char=incoming_data['num'][position]#женюсь.
-        // # матчасть
-        // #как найти первый знак? нужно число поделить на нижний разряд
-        // sc_len=len(incoming_data['num'])
-        // max_pow=len(incoming_data['num'])-1
-        // match position:
-        //     case 0:
-        //         shortcut_int=shortcut_int//10**(max_pow)
-        //     case _:
-        //         stop_here=10**(sc_len-position)
-        //         while shortcut_int>stop_here:
-        //             shortcut_int=shortcut_int%10**max_pow
-        //             max_pow-=1
-        //             # print(shortcut_int)
-        //         shortcut_int=int(shortcut_int//(stop_here/10))
+        //как же Я заустал.
+        //сначала дробим число по символьно и ложим в новый массив.
+        int[] number_divided=new int[_len];
+        int temp_single_digit;
+        int buffer=num_parsed;
+        for (int step_backwards = _len-1,output_index=0; step_backwards >=0;step_backwards--,output_index++)
+        {
+        temp_single_digit=buffer/(int)(Math.Pow(10,step_backwards));
+        buffer=buffer%(int)(Math.Pow(10,step_backwards));
+        number_divided[output_index]=temp_single_digit;
+        }
+        //потом уже ходим по массиву, это же просто?
+        for (int index_start=0,index_end=number_divided.Length-1; index_start<index_end; index_start++,index_end--)
+        {
+            if (number_divided[index_start]!=number_divided[index_end])
+            {
+                output=false;
+                return output;
+            }
+        }
         return output;
     }
     public void main(){//string[] args не обязательно, это аргументы 
