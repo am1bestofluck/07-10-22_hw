@@ -6,5 +6,6 @@ foreach(string var in fast_test){
     Mirrored_string run= new Mirrored_string(self:var);
     run.main();
 }
-WriteLine("Второе задание:\n\n");
+WriteLine("\nВторое задание:\n\n");
 Point_3d.homework_check();
+WriteLine("\nТретье задание:\n\n");
