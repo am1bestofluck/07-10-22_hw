@@ -1,13 +1,4 @@
 using static System.Console;
-string[] fast_test= {"aspera","Сорос","12321","456654","0123"};
-Mirrored_string.todo();
-foreach(string var in fast_test){
-    Mirrored_string run= new Mirrored_string(self:var);
-    run.main();
-}
-
-Mirrored_string abc= new Mirrored_string(self:"qweewq");
-abc.main();
 class Mirrored_string{
     public static void todo(){
         WriteLine("// Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.");
@@ -48,34 +39,33 @@ class Mirrored_string{
         {
             _len++;
         }
-        int index_top=0,index_bottom=_len-1,supval_t,supval_b,_pow_t,_pow_b,num_top=-1,num_bottom=-2;
-        _pow_t=_len;
-        _pow_b=_len;
-        supval_t=num_parsed;
-        supval_b=num_parsed;
-        while (index_top<index_bottom)
+        int single_digit_l=-1,          single_digit_r=-2,
+            border_l=1,                 border_r=_len-1,
+            index_to_find_l=border_l,   index_to_find_r=border_r,
+            index_to_find_current;
+        
+        while (index_to_find_l<index_to_find_r)
         {
-            while (supval_t>Math.Pow(10,index_bottom))
+            //находим левый знак
+            single_digit_l=0;
+            //находим правый знак
+            single_digit_r=0;
+
+
+
+
+            index_to_find_l++;
+            index_to_find_r++;
+            Console.WriteLine(index_to_find_l);
+            Console.WriteLine(index_to_find_r);
+            if (single_digit_l!=single_digit_r)
             {
-                supval_t=supval_t%(int)Math.Pow(10,_pow_t);
-                _pow_t--;
-                // Console.WriteLine(supval_t);
+                output=false;
+                return output;
             }
-            num_top=(int)(supval_t/Math.Pow(10,_pow_t));
-            while (supval_b>Math.Pow(10,index_top))
-            {
-                supval_b=supval_b%(int)Math.Pow(10,_pow_b);
-                _pow_b--;
-            }
-            num_bottom=(int)(supval_b/Math.Pow(10,_pow_t));
-            index_top++;
-            index_bottom--;
         }
-        if (num_top!=num_bottom)
-        {
-            output=false;
-            return output;
-        }
+          return output;
+        
 
         //...чем дальше в лес тем больше допущений.
         // 987654->10*6-- max_n znakov
@@ -87,9 +77,7 @@ class Mirrored_string{
         // повторяем это для индексов которые идут на встречу друг другу пока они не разминутся
         // while (true){
         //     System.Console.WriteLine();
-        // }
-        return output;
-    }
+        }
     public void main(){//string[] args не обязательно, это аргументы 
         // todo();
         WriteLine($"\nРассматриваем аргумент {content}");
