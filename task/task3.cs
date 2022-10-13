@@ -1,10 +1,10 @@
 using static System.Console;
 class hand_drawn_table{
-    string key_header=" x ";
-    string value_header=" f(x) ";
+    string key_header="x";
+    string value_header="f(x)";
     public hand_drawn_table (string key_name, string value_name){//декларирируем шапку таблицы
-        key_header=(key_name==null?" x ":key_name);
-        value_header=(value_name==null?" f(x) ":value_name);
+        key_header=(key_name==null?"x":key_name);
+        value_header=(value_name==null?"f(x)":value_name);
     }
     public hand_drawn_table()
     {
