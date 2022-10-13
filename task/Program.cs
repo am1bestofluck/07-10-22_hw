@@ -9,3 +9,4 @@ foreach(string var in fast_test){
 WriteLine("\nВторое задание:\n\n");
 Point_3d.homework_check();
 WriteLine("\nТретье задание:\n\n");
+hand_drawn_table.main();
