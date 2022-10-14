@@ -20,30 +20,38 @@ class string_observer:
             index["first"]+=1
             index["final"]-=1
         print("Строчное решение: Это паллиндром" if is_valid else "Cтрочное решение: Это не паллиндром")
-
-    def __core_math(self)->None:
-        output_math="Математический метод: не число, нельзя !посчитать"
-        match self.__obj.count("-"):
+        
+    def return_valid_int(str_i:str,vocal_output:bool,vocal_message:str)->int|None:#немного перекроил метод для третьей задачи
+        match str_i.count("-"):
             case 0:
-                if not self.__obj.isdecimal():
-                    print(output_math)
+                if not str_i.isdecimal():
+                    if vocal_output: print(vocal_message) 
                     return
                 else:
-                    obj_int=int(self.__obj)
+                    output_num=int(str_i)
             case 1:
-                if self.__obj.startswith("-"):
-                    obj_m=self.__obj[1:]
-                    if not obj_m.isdecimal():
-                        print(output_math)
+                if str_i.startswith("-"):
+                    str_m=str_i[1:]
+                    if not str_m.isdecimal():
+                        print(vocal_message)
                         return
                     else:
-                        obj_int=int(obj_m)
+                        output_num=int(str_m)
                 else:
-                    print(output_math)
+                    print(vocal_message)
                     return
             case _:
-                print(output_math)
+                print(vocal_message)
                 return
+        return output_num
+    def __core_math(self)->None:
+        output_math="Математический метод: не число, нельзя !посчитать"
+        obj_int=string_observer.return_valid_int(
+            str_i=self.__obj,
+            vocal_output=True,
+            vocal_message=output_math)
+        if obj_int is None:
+            return
         #дробим число на знаки
         list_digits=[]
         #находим количество знаков в числе
@@ -84,3 +92,4 @@ def main():
         speaker.main()
 if __name__=="__main__":
     print("В принципе можно вызвать main(), но лучше запустить head.py")
+    main()

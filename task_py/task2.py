@@ -4,6 +4,9 @@ class Point_3d:
         self.x=coord_x
         self.y=coord_y
         self.z=coord_z
+    def todo()->None:
+        print("Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.")
+
     def __repr__(self) -> str:
         return f"[{str(self.x)}, {str(self.y)}, {str(self.z)}]"
     def get_range_to(self,another_Point_3d)->float:
@@ -19,13 +22,12 @@ class Point_3d:
 
 
 def main():
+    Point_3d.todo()
     run={
         (3,6,8):(2,1,-7),
         (7,-5, 0):(1,-1,9)
         }
     for example in run:
-        # print(example)
-        # print(run[example])
         p_a=Point_3d(
             example[0],example[1],example[2])
         p_b=Point_3d(
