@@ -1,5 +1,15 @@
-from task1 import string_observer
-
+from task1 import string_observer#отрицательные значения надо фиксить....ёмаё!
+class string_observer_m(string_observer):
+    def return_valid_int(self,str_i: str, vocal_output: bool, vocal_message: str) -> int | None:
+        if (str_i.startswith("-") and str_i.count("-")==1 and str_i[1:].isdecimal()):
+            buffer=super().return_valid_int(str_i=str_i,vocal_output=vocal_output, vocal_message=vocal_message)
+            return -buffer
+        else:
+            return super().return_valid_int(str_i=str_i,vocal_output=vocal_output, vocal_message=vocal_message)#едем дальше. super() срабатывает только для тех функций надкласса которые принимают self в аргументах
+    # пишем def ret, жмём tab, получаем: 
+    # def return_valid_int(str_i: str, vocal_output: bool, vocal_message: str) -> int | None:
+    #     return super().return_valid_int(vocal_output, vocal_message)
+    # Чтооо? оО
 class hand_drawn_table:
     def __init__(self, header_name=None,value_name=None,lower_limit=None,upper_limit=None)->None:# оказывается, это не лень а "перегрузка функции" :))
         self.header_name="x" if header_name is None else header_name
@@ -15,24 +25,25 @@ class hand_drawn_table:
         print("Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.")
         return
 
-    def take_drawing_borders(self)->None:
+    def take_drawing_borders(self)->dict:
         output={"minval":None,"maxval":None}
         while not isinstance(output["minval"],int):
             _min=input("дай нижнюю границу плз...что-то это уже входит в рутину")
-            output["minval"]=string_observer.return_valid_int(
+            init_compiler=string_observer_m(_min)
+            output["minval"]=init_compiler.return_valid_int(
                 str_i=_min,
                 vocal_output=False,
                 vocal_message=""
             )
         while not isinstance(output["maxval"],int):
             _min=input("дай верхнюю границу плз")
-            output["maxval"]=string_observer.return_valid_int(
+            output["maxval"]=init_compiler.return_valid_int(
                 str_i=_min,
                 vocal_output=False,
                 vocal_message=""
             )
         output["maxval"]+=1# сказано от 1 до n а не до n-1
-        self.content_limits=output
+        return output
 
     def draw(self):
         decorator={"left":"| ","mid":" | ","right":" |"}
@@ -53,7 +64,7 @@ class hand_drawn_table:
         print(strikethrough)
 def main():
     hand_drawn_table.todo()
-    table=hand_drawn_table(lower_limit=-10,upper_limit=10)
+    table=hand_drawn_table()
     table.draw()
 
 if __name__=="__main__":

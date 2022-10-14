@@ -21,7 +21,7 @@ class string_observer:
             index["final"]-=1
         print("Строчное решение: Это паллиндром" if is_valid else "Cтрочное решение: Это не паллиндром")
         
-    def return_valid_int(str_i:str,vocal_output:bool,vocal_message:str)->int|None:#немного перекроил метод для третьей задачи
+    def return_valid_int(self,str_i:str,vocal_output:bool,vocal_message:str)->int|None:#немного перекроил метод для третьей задачи
         match str_i.count("-"):
             case 0:
                 if not str_i.isdecimal():
@@ -46,7 +46,7 @@ class string_observer:
         return output_num
     def __core_math(self)->None:
         output_math="Математический метод: не число, нельзя !посчитать"
-        obj_int=string_observer.return_valid_int(
+        obj_int=self.return_valid_int(
             str_i=self.__obj,
             vocal_output=True,
             vocal_message=output_math)
