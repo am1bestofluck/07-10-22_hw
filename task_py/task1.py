@@ -92,4 +92,3 @@ def main():
         speaker.main()
 if __name__=="__main__":
     print("В принципе можно вызвать main(), но лучше запустить head.py")
-    main()
